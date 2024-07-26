@@ -1,3 +1,4 @@
 config.py
+webrepl_cfg.py
 .venv
 .idea
