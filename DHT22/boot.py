@@ -23,7 +23,7 @@ gc.collect()
 import network
 sta = network.WLAN(network.STA_IF)
 sta.active(True)
-sta.config(dhcp_hostname = config.AP_HOSTNAME)
+sta.config(dhcp_hostname = config.STA_HOSTNAME)
 sta.connect(config.STA_SSID, config.STA_PASSWORD)
 
 while sta.isconnected() == False:
