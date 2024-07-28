@@ -16,25 +16,28 @@ if not debug:
 def connect_sta():
     """ Connect to LAN """
     sta = network.WLAN(network.STA_IF)
-    sta.active(True)
-    if not sta.isconnected():
+    sta.active(config.STA_ACTIVE)
+    if config.STA_ACTIVE:
         sta.config(dhcp_hostname=config.STA_HOSTNAME)
-        sta.connect(config.STA_SSID, config.STA_PASSWORD)
-        while not sta.isconnected():
-            pass
-    if debug:
-        print(sta.ifconfig())
+        if not sta.isconnected():
+            sta.connect(config.STA_SSID, config.STA_PASSWORD)
+            while not sta.isconnected():
+                pass
+            if debug:
+                print(sta.ifconfig())
 
 
 def create_ap():
     """ Create Access point """
     ap = network.WLAN(network.AP_IF)
-    ap.active(True)
-    ap.config(essid=config.AP_SSID, password=config.AP_PASSWORD, authmode=network.AUTH_WPA_WPA2_PSK)
-    while not ap.active():
-        pass
-    if debug:
-        print(ap.ifconfig())
+    ap.active(config.AP_ACTIVE)
+    if config.AP_ACTIVE:
+        ap.config(essid=config.AP_SSID, password=config.AP_PASSWORD, authmode=network.AUTH_WPA_WPA2_PSK)
+        while not ap.active():
+            pass
+        if debug:
+            print(ap.ifconfig())
+
 
 gc.collect()
 connect_sta()
