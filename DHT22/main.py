@@ -37,7 +37,7 @@ def web_page():
 
 def mqtt_handle(mqtt_timer):
     try:
-        payload = 'field1={0:3.1f}&field2={0:3.1f}'.format(temp, hum)
+        payload = 'field1={0:3.1f}&field2={1:3.1f}'.format(temp, hum)
         mqtt.connect()
         mqtt.publish(config.MQTT_TOPIC, payload)
         mqtt.disconnect()
