@@ -59,7 +59,7 @@ mqtt_timer = machine.Timer(0)
 sensor_timer = machine.Timer(1)
 
 mqtt_timer.init(period=config.MQTT_PUB_TIME*1000, mode=machine.Timer.PERIODIC, callback=mqtt_handle)
-sensor_timer.init(period=5000, mode=machine.Timer.PERIODIC, callback=sensor_handle)
+sensor_timer.init(period=config.SENSOR_READINGS_TIME*1000, mode=machine.Timer.PERIODIC, callback=sensor_handle)
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.bind(('', 80))
