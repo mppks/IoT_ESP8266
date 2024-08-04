@@ -20,7 +20,7 @@ def connect_sta():
     if config.STA_ACTIVE:
         sta.config(dhcp_hostname=config.STA_HOSTNAME)
         if not sta.isconnected():
-            sta.connect(config.STA_SSID, config.STA_PASSWORD)
+            sta.connect(config.STA_CREDENTIALS)
             while not sta.isconnected():
                 pass
             if debug:
